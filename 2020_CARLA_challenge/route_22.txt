@@ -1,0 +1,107 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 0.02016619347156219,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 0.02016619347156219,
+                "outside_route_lanes": 0.010083096735781095,
+                "red_light": 0.02016619347156219,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 0.0
+            },
+            "meta": {},
+            "route_id": -1,
+            "scores": {
+                "score_composed": 7.160547984856345,
+                "score_penalty": 0.07160547984856346,
+                "score_route": 100.0
+            },
+            "status": "Completed"
+        },
+        "progress": [
+            1,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.guardrail and id=0 at (x=136.358, y=193.518, z=0.034)",
+                        "Agent collided against object with type=static.guardrail and id=0 at (x=139.149, y=192.357, z=0.036)"
+                    ],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=2459 at (x=-105.83, y=88.681, z=0.033)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=2459 at (x=-102.846, y=89.056, z=0.035)"
+                    ],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 41.128 meters (3.92% of the completed route)"
+                    ],
+                    "red_light": [
+                        "Agent ran a red light 2363 at (x=-138.8, y=100.05, z=0.0)",
+                        "Agent ran a red light 2356 at (x=-38.65, y=100.05, z=0.0)"
+                    ],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": []
+                },
+                "meta": {
+                    "duration_game": 518.450007725507,
+                    "duration_system": 1842.2043919563293,
+                    "route_length": 991.7588080369975
+                },
+                "route_id": "RouteScenario_22",
+                "scores": {
+                    "score_composed": 7.160547984856345,
+                    "score_penalty": 0.07160547984856346,
+                    "score_route": 100.0
+                },
+                "status": "Completed"
+            }
+        ]
+    },
+    "eligible": true,
+    "entry_status": "Finished",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "sensors": [
+        "carla_camera",
+        "carla_camera",
+        "carla_camera",
+        "carla_imu",
+        "carla_gnss",
+        "carla_speedometer"
+    ],
+    "values": [
+        "7.161",
+        "100.000",
+        "0.072",
+        "0.000",
+        "0.020",
+        "0.020",
+        "0.020",
+        "0.000",
+        "0.010",
+        "0.000",
+        "0.000",
+        "0.000"
+    ]
+}

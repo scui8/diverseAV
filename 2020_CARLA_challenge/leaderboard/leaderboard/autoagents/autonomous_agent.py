@@ -32,7 +32,7 @@ class AutonomousAgent(object):
     Autonomous agent base class. All user agents have to be derived from this class
     """
 
-    def __init__(self, path_to_conf_file):
+    def __init__(self, path_to_conf_file, agent_id=0):
         self.track = Track.SENSORS
         #  current global plans to reach a destination
         self._global_plan = None
@@ -45,6 +45,9 @@ class AutonomousAgent(object):
         self.setup(path_to_conf_file)
 
         self.wallclock_t0 = None
+
+        # for dual agent setup
+        self.agent_id = agent_id
 
     def setup(self, path_to_conf_file):
         """
@@ -101,6 +104,9 @@ class AutonomousAgent(object):
         Execute the agent call, e.g. agent()
         Returns the next vehicle controls
         """
+        if self.sensor_interface.get_current_queue_index() != self.agent_id:
+            return None
+
         input_data = self.sensor_interface.get_data()
 
         timestamp = GameTime.get_time()

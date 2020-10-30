@@ -200,11 +200,20 @@ class SensorInterface(object):
         self._sensors_objects = {}
         self._data_buffers = {}
         self._new_data_buffers = Queue()
+        self._new_data_buffers2 = None
         self._queue_timeout = 10
 
         # Only sensor that doesn't get the data on tick, needs special treatment
         self._opendrive_tag = None
 
+        # Flag that set the sensor interface into dual agent mode
+        self._dual_agent = False
+        self._dual_agent_last_timestamp = 0
+        self._dual_agent_queue_index = 0
+    
+    def set_dual_agent(self, mode):
+        self._dual_agent = mode
+        self._new_data_buffers2 = Queue()
 
     def register_sensor(self, tag, sensor_type, sensor):
         if tag in self._sensors_objects:
@@ -219,8 +228,27 @@ class SensorInterface(object):
         # print("Updating {} - {}".format(tag, timestamp))
         if tag not in self._sensors_objects:
             raise SensorConfigurationInvalid("The sensor with tag [{}] has not been created!".format(tag))
+        if self._dual_agent:
+            # the very first batch of sensor data
+            if self._dual_agent_last_timestamp == 0:
+                self._dual_agent_last_timestamp = timestamp
 
-        self._new_data_buffers.put((tag, timestamp, data))
+            # still in current timestamp
+            elif self._dual_agent_last_timestamp == timestamp:
+                pass
+
+            # a new timestamp switch queue
+            else:
+                self._dual_agent_last_timestamp = timestamp
+                self._dual_agent_queue_index = 1 if not self._dual_agent_queue_index else 0
+
+            # finally update the queue
+            if not self._dual_agent_queue_index:
+                self._new_data_buffers.put((tag, timestamp, data, 0))
+            else:
+                self._new_data_buffers2.put((tag, timestamp, data, 1))
+        else:
+            self._new_data_buffers.put((tag, timestamp, data))
 
     def get_data(self):
         try: 
@@ -233,11 +261,21 @@ class SensorInterface(object):
                     # print("Ignoring opendrive sensor")
                     break
 
-                sensor_data = self._new_data_buffers.get(True, self._queue_timeout)
-                # print("Getting {} - {}".format(sensor_data[0],sensor_data[1]))
-                data_dict[sensor_data[0]] = ((sensor_data[1], sensor_data[2]))
+                if self._dual_agent_queue_index == 0:
+                    sensor_data = self._new_data_buffers.get(True, self._queue_timeout)
+
+                else:
+                    sensor_data = self._new_data_buffers2.get(True, self._queue_timeout)
+
+                if self._dual_agent:
+                    data_dict[sensor_data[0]] = ((sensor_data[1], sensor_data[2], sensor_data[3]))
+                else:
+                    data_dict[sensor_data[0]] = ((sensor_data[1], sensor_data[2]))
 
         except Empty:
             raise SensorReceivedNoData("A sensor took too long to send their data")
 
         return data_dict
+
+    def get_current_queue_index(self):
+        return self._dual_agent_queue_index

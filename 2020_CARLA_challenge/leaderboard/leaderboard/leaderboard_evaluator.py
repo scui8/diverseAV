@@ -61,7 +61,7 @@ class LeaderboardEvaluator(object):
     # Tunable parameters
     client_timeout = 10.0  # in seconds
     wait_for_world = 20.0  # in seconds
-    frame_rate = 20.0      # in Hz
+    frame_rate = 40.0      # in Hz
 
     def __init__(self, args, statistics_manager):
         """
@@ -262,7 +262,10 @@ class LeaderboardEvaluator(object):
         try:
             self._agent_watchdog.start()
             agent_class_name = getattr(self.module_agent, 'get_entry_point')()
-            self.agent_instance = getattr(self.module_agent, agent_class_name)(args.agent_config)
+            self.agent_instance = getattr(self.module_agent, agent_class_name)(args.agent_config, 0)
+            self.agent_instance2 = None
+            if args.dual_agent:
+                self.agent_instance2 = getattr(self.module_agent, agent_class_name)(args.agent_config, 1)
             config.agent = self.agent_instance
 
             # Check and store the sensors
@@ -319,7 +322,8 @@ class LeaderboardEvaluator(object):
             # Load scenario and run it
             if args.record:
                 self.client.start_recorder("{}/{}_rep{}.log".format(args.record, config.name, config.repetition_index))
-            self.manager.load_scenario(scenario, self.agent_instance, config.repetition_index)
+            
+            self.manager.load_scenario(scenario, self.agent_instance, config.repetition_index, args.dual_agent, self.agent_instance2)
 
         except Exception as e:
             # The scenario is wrong -> set the ejecution to crashed and stop
@@ -451,6 +455,7 @@ def main():
     parser.add_argument("--checkpoint", type=str,
                         default='./simulation_results.json',
                         help="Path to checkpoint used for saving statistics and resuming")
+    parser.add_argument("--dual_agent", action="store_true")
 
     arguments = parser.parse_args()
 

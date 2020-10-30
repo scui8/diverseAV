@@ -61,6 +61,10 @@ class AgentWrapper(object):
     ]
 
     _agent = None
+
+    # a backup agent
+    _agent2 = None
+
     _sensors_list = []
 
     def __init__(self, agent):
@@ -74,6 +78,26 @@ class AgentWrapper(object):
         Pass the call directly to the agent
         """
         return self._agent()
+
+    def setup_second_agent(self, agent):
+        """
+        Setup secondary agent
+        """
+        self._agent2 = agent
+        if self._agent:
+            # sync settings between two agents
+            self._agent2.sensor_interface = self._agent.sensor_interface
+            self._agent2._global_plan = self._agent._global_plan
+            self._agent2._global_plan_world_coord = self._agent._global_plan_world_coord
+            self._agent2.sensor_interface.set_dual_agent(True)
+        else:
+            raise RuntimeError("Second agent not registered")
+
+    def get_secondary_aciton(self):
+        """
+        call the second agent and see that the agent choose to act
+        """
+        return self._agent2()
 
     def setup_sensors(self, vehicle, debug_mode=False):
         """

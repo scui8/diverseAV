@@ -79,6 +79,9 @@ class ScenarioManager(object):
         # Use the callback_id inside the signal handler to allow external interrupts
         signal.signal(signal.SIGINT, self.signal_handler)
 
+        # setup dual agent mode
+        self.dual_agent = False
+
     def signal_handler(self, signum, frame):
         """
         Terminate scenario ticking when receiving a signal interrupt
@@ -96,13 +99,16 @@ class ScenarioManager(object):
         self.end_system_time = None
         self.end_game_time = None
 
-    def load_scenario(self, scenario, agent, rep_number):
+    def load_scenario(self, scenario, agent, rep_number, dual_agent=False, agent2=None):
         """
         Load a new scenario
         """
 
         GameTime.restart()
         self._agent = AgentWrapper(agent)
+        if dual_agent:
+            self._agent.setup_second_agent(agent2)
+            self.dual_agent = True
         self.scenario_class = scenario
         self.scenario = scenario.scenario
         self.scenario_tree = self.scenario.scenario_tree
@@ -149,7 +155,14 @@ class ScenarioManager(object):
             CarlaDataProvider.on_carla_tick()
 
             try:
+                agent = 0
                 ego_action = self._agent()
+                if self.dual_agent:
+                    secondary_aciton = self._agent.get_secondary_aciton()
+                if not ego_action:
+                    ego_action = secondary_aciton
+                    agent = 1
+                print("Agent {} action: {}".format(agent, ego_action))
 
             # Special exception inside the agent that isn't caused by the agent
             except SensorReceivedNoData as e:
@@ -175,7 +188,7 @@ class ScenarioManager(object):
             spectator = CarlaDataProvider.get_world().get_spectator()
             ego_trans = self.ego_vehicles[0].get_transform()
             spectator.set_transform(carla.Transform(ego_trans.location + carla.Location(z=50),
-                                                        carla.Rotation(pitch=-90)))
+                                                    carla.Rotation(pitch=-90)))
 
         if self._running and self.get_running_status():
             CarlaDataProvider.get_world().tick(self._timeout)

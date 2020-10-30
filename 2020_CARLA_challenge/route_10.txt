@@ -6,7 +6,7 @@
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
                 "collisions_vehicle": 0.0,
-                "outside_route_lanes": 0.03159612985509752,
+                "outside_route_lanes": 0.0,
                 "red_light": 0.0,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 14.681115588822928,
-                "score_penalty": 0.9974995892717659,
-                "score_route": 14.717916424949125
+                "score_composed": 14.423508647814609,
+                "score_penalty": 1.0,
+                "score_route": 14.423508647814609
             },
             "status": "Failed"
         },
@@ -41,9 +41,7 @@
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
                     "collisions_vehicle": [],
-                    "outside_route_lanes": [
-                        "Agent went outside its route lanes for about 0.994 meters (0.25% of the completed route)"
-                    ],
+                    "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -51,15 +49,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 357.7500053308904,
-                    "duration_system": 985.5211544036865,
+                    "duration_game": 115.60000172257423,
+                    "duration_system": 682.842479467392,
                     "route_length": 2150.402605037221
                 },
                 "route_id": "RouteScenario_10",
                 "scores": {
-                    "score_composed": 14.681115588822928,
-                    "score_penalty": 0.9974995892717659,
-                    "score_route": 14.717916424949125
+                    "score_composed": 14.423508647814609,
+                    "score_penalty": 1.0,
+                    "score_route": 14.423508647814609
                 },
                 "status": "Failed"
             }
@@ -90,15 +88,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "14.681",
-        "14.718",
-        "0.997",
+        "14.424",
+        "14.424",
+        "1.000",
         "0.000",
         "0.000",
         "0.000",
         "0.000",
         "0.000",
-        "0.032",
+        "0.000",
         "0.000",
         "0.000",
         "0.000"

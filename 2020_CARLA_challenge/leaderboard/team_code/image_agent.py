@@ -147,7 +147,7 @@ class ImageAgent(BaseAgent):
         steer = self._turn_controller.step(angle)
         steer = np.clip(steer, -1.0, 1.0)
 
-        desired_speed = np.linalg.norm(points_world[0] - points_world[1]) * 2.0
+        desired_speed = np.linalg.norm(points_world[0] - points_world[1]) * 3.0
         # desired_speed *= (1 - abs(angle)) ** 2
 
         speed = tick_data['speed']

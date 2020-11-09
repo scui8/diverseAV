@@ -1,4 +1,6 @@
-# Learning by Cheating
+ # Learning by Cheating (with dual agent setup for diverse AV)
+## Use dual agent
+Add flag `--dual_agent` flag to the end of the python command that runs the leaderboard_evaluator.
 
 ![teaser](https://github.com/dianchen96/LearningByCheating/blob/release-0.9.6/figs/fig1.png "Pipeline")
 > [**Learning by Cheating**](https://arxiv.org/abs/1912.12294)    

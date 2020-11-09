@@ -2,6 +2,8 @@ from pytorchfi.core import fault_injection as pfi_core
 import random
 import logging
 import torch
+import numpy as np
+import matplotlib.pyplot as plt
 
 class pyTorchFI_Carla_Utils(object):
     def __init__(self):
@@ -57,3 +59,19 @@ class pyTorchFI_Carla_Utils(object):
 
         print("Total Conv:",pfi_model.get_total_conv())
         print("Total elements counted:", count)
+
+    @staticmethod
+    def get_weight_distribution(pfi_model):
+        n_bins = 100
+        conv_weights = np.array([])
+        for name, param in pfi_model.get_original_model().named_parameters():
+            if pyTorchFI_Carla_Utils.is_conv_weight_layer(name):
+                conv_weights = np.append(conv_weights, param.data.cpu().numpy())
+
+        fig, ax = plt.subplots(1,1)
+        ax.hist(conv_weights, bins=n_bins)
+        ax.set_yscale('log')
+        ax.set_title('Weight Distribution for Conv Layers (ImageAgent)')
+        ax.set_xlabel("Weight Value")
+        ax.set_ylabel("Count (log scale)")
+        plt.show()

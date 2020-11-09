@@ -42,6 +42,9 @@ from leaderboard.autoagents.agent_wrapper import  AgentWrapper, AgentError
 from leaderboard.utils.statistics_manager import StatisticsManager
 from leaderboard.utils.route_indexer import RouteIndexer
 
+##-- pyTorch FI Integration--##
+from carla_project.src.pyTorchFI_Carla import pyTorchFI_Carla_Utils as pfi_carla_utils
+
 
 sensors_to_icons = {
     'sensor.camera.semantic_segmentation':        'carla_camera',
@@ -353,6 +356,12 @@ class LeaderboardEvaluator(object):
             sys.exit(-1)
 
         print("\033[1m> Running the route\033[0m")
+
+        ### Setup Fault Injector
+        print("\033[36m\033[1m==> Configuring pyTorchFI\033[0m")
+        pfi_model = self.agent_instance.get_pfi_model()
+        pfi_carla_utils.print_pfi_model(pfi_model)
+        print("Weight Loc: " + str(pfi_carla_utils.random_weight_location(pfi_model)))
 
         # Run the scenario
         try:

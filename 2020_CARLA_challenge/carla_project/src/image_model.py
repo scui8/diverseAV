@@ -13,6 +13,11 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
 from PIL import Image, ImageDraw
 
+##-- pyTorch FI Integration--##
+from pytorchfi.core import fault_injection as pfi_core
+from .pyTorchFI_Carla import pyTorchFI_Carla_Utils as pfi_carla_utils
+##-- pyTorch FI Integration End--##
+
 from .map_model import MapModel
 from .models import SegmentationModel, RawController
 from .utils.heatmap import ToHeatmap
@@ -104,12 +109,33 @@ class ImageModel(pl.LightningModule):
         self.converter = Converter()
         self.controller = RawController(4)
 
+        self.fi_enable=False
+
+    ##-- pyTorch FI Integration --##
+    def init_pytorch_fi(self):
+        #Params -> model, input_h, input_w, batch_size
+        self.pfi_model = pfi_core(self.net,144,256,1, use_cuda=True, c=10, debug=True)
+
+    def set_pfi_inj(self, pfi_inj, enable=True):
+        self.pfi_inj = pfi_inj
+        self.fi_enable=enable
+
+    def get_pfi_model(self):
+        return self.pfi_model
+
     def forward(self, img, target):
         target_cam = self.converter.map_to_cam(target)
         target_heatmap_cam = self.to_heatmap(target, img)[:, None]
-        out = self.net(torch.cat((img, target_heatmap_cam), 1))
+        #print("NN Input Tensor Shape:", torch.cat((img, target_heatmap_cam), 1).shape)
+
+        nn_input = torch.cat((img, target_heatmap_cam), 1)
+        if self.fi_enable:
+            out = self.pfi_inj(nn_input)
+        else:
+            out = self.net(nn_input)
 
         return out, (target_cam, target_heatmap_cam)
+    ##-- pyTorch FI Integration End--##
 
     @torch.no_grad()
     def _get_labels(self, topdown, target):

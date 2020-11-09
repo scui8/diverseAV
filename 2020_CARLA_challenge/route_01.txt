@@ -5,7 +5,7 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.0,
+                "collisions_vehicle": 0.045719581543626986,
                 "outside_route_lanes": 0.0,
                 "red_light": 0.0,
                 "route_dev": 0.0,
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 0.0,
-                "score_penalty": 1.0,
-                "score_route": 0.0
+                "score_composed": 24.122464744040606,
+                "score_penalty": 0.6,
+                "score_route": 40.20410790673434
             },
             "status": "Failed"
         },
@@ -40,7 +40,9 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.diamondback.century and id=264 at (x=334.956, y=75.199, z=0.034)"
+                    ],
                     "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
@@ -49,15 +51,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 1.700000025331974,
-                    "duration_system": 13.161628484725952,
-                    "route_length": 1010.4496438346772
+                    "duration_game": 71.92500107176602,
+                    "duration_system": 570.2177455425262,
+                    "route_length": 544.0356046996249
                 },
                 "route_id": "RouteScenario_1",
                 "scores": {
-                    "score_composed": 0.0,
-                    "score_penalty": 1.0,
-                    "score_route": 0
+                    "score_composed": 24.122464744040606,
+                    "score_penalty": 0.6,
+                    "score_route": 40.20410790673434
                 },
                 "status": "Failed"
             }
@@ -88,11 +90,11 @@
         "carla_speedometer"
     ],
     "values": [
+        "24.122",
+        "40.204",
+        "0.600",
         "0.000",
-        "0.000",
-        "1.000",
-        "0.000",
-        "0.000",
+        "0.046",
         "0.000",
         "0.000",
         "0.000",

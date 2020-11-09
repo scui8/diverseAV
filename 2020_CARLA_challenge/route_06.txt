@@ -6,21 +6,29 @@
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
                 "collisions_vehicle": 0.0,
-                "outside_route_lanes": 0.0038043076774673334,
+                "outside_route_lanes": 0.0,
                 "red_light": 0.0,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
                 "stop_infraction": 0.0,
                 "vehicle_blocked": 0.0
             },
-            "meta": {},
+            "meta": {
+                "exceptions": [
+                    [
+                        "RouteScenario_6",
+                        0,
+                        "Failed"
+                    ]
+                ]
+            },
             "route_id": -1,
             "scores": {
-                "score_composed": 99.92354744538736,
-                "score_penalty": 0.9992354744538736,
-                "score_route": 100.0
+                "score_composed": 0.0,
+                "score_penalty": 1.0,
+                "score_route": 0.0
             },
-            "status": "Completed"
+            "status": "Failed"
         },
         "progress": [
             1,
@@ -33,9 +41,7 @@
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
                     "collisions_vehicle": [],
-                    "outside_route_lanes": [
-                        "Agent went outside its route lanes for about 2.01 meters (0.08% of the completed route)"
-                    ],
+                    "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -43,17 +49,17 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 711.7000106051564,
-                    "duration_system": 2256.9748373031616,
-                    "route_length": 2628.599169102265
+                    "duration_game": 81.85000121966004,
+                    "duration_system": 855.6941668987274,
+                    "route_length": 731.4965169470098
                 },
                 "route_id": "RouteScenario_6",
                 "scores": {
-                    "score_composed": 99.92354744538736,
-                    "score_penalty": 0.9992354744538736,
-                    "score_route": 100.0
+                    "score_composed": 0.0,
+                    "score_penalty": 1.0,
+                    "score_route": 0.0
                 },
-                "status": "Completed"
+                "status": "Failed"
             }
         ]
     },
@@ -82,15 +88,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "99.924",
-        "100.000",
-        "0.999",
+        "0.000",
+        "0.000",
+        "1.000",
         "0.000",
         "0.000",
         "0.000",
         "0.000",
         "0.000",
-        "0.004",
+        "0.000",
         "0.000",
         "0.000",
         "0.000"

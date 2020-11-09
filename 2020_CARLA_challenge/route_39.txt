@@ -3,11 +3,11 @@
         "global_record": {
             "index": -1,
             "infractions": {
-                "collisions_layout": 0.0,
+                "collisions_layout": 0.04850206789010854,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.18780601073441824,
+                "collisions_vehicle": 0.0,
                 "outside_route_lanes": 0.0,
-                "red_light": 0.0,
+                "red_light": 0.04850206789010854,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
                 "stop_infraction": 0.0,
@@ -16,7 +16,7 @@
             "meta": {
                 "exceptions": [
                     [
-                        "RouteScenario_5",
+                        "RouteScenario_39",
                         0,
                         "Failed"
                     ]
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 2.8266404799982845,
-                "score_penalty": 0.6,
-                "score_route": 4.711067466663808
+                "score_composed": 4.099839214084225,
+                "score_penalty": 0.45499999999999996,
+                "score_route": 9.010635635349946
             },
             "status": "Failed"
         },
@@ -38,28 +38,30 @@
             {
                 "index": 0,
                 "infractions": {
-                    "collisions_layout": [],
-                    "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.diamondback.century and id=273 at (x=354.251, y=330.376, z=0.034)"
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.guardrail and id=0 at (x=-516.993, y=134.39, z=0.034)"
                     ],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [],
                     "outside_route_lanes": [],
-                    "red_light": [],
+                    "red_light": [
+                        "Agent ran a red light 1692 at (x=-389.3, y=21.0, z=0.0)"
+                    ],
                     "route_dev": [],
                     "route_timeout": [],
                     "stop_infraction": [],
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 25.125000374391675,
-                    "duration_system": 121.45689678192139,
-                    "route_length": 1130.24134093902
+                    "duration_game": 120.72500179894269,
+                    "duration_system": 581.7704513072968,
+                    "route_length": 2288.1490786388968
                 },
-                "route_id": "RouteScenario_5",
+                "route_id": "RouteScenario_39",
                 "scores": {
-                    "score_composed": 2.8266404799982845,
-                    "score_penalty": 0.6,
-                    "score_route": 4.711067466663808
+                    "score_composed": 4.099839214084225,
+                    "score_penalty": 0.45499999999999996,
+                    "score_route": 9.010635635349946
                 },
                 "status": "Failed"
             }
@@ -90,13 +92,13 @@
         "carla_speedometer"
     ],
     "values": [
-        "2.827",
-        "4.711",
-        "0.600",
-        "0.000",
-        "0.188",
+        "4.100",
+        "9.011",
+        "0.455",
         "0.000",
         "0.000",
+        "0.049",
+        "0.049",
         "0.000",
         "0.000",
         "0.000",

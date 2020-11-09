@@ -5,12 +5,12 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.0,
+                "collisions_vehicle": 0.10703839051982661,
                 "outside_route_lanes": 0.0,
                 "red_light": 0.0,
-                "route_dev": 0.018522149100046754,
+                "route_dev": 0.0,
                 "route_timeout": 0.0,
-                "stop_infraction": 0.0,
+                "stop_infraction": 0.10703839051982661,
                 "vehicle_blocked": 0.0
             },
             "meta": {
@@ -18,15 +18,15 @@
                     [
                         "RouteScenario_20",
                         0,
-                        "Failed - Agent deviated from the route"
+                        "Failed"
                     ]
                 ]
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 43.277228789414416,
-                "score_penalty": 1.0,
-                "score_route": 43.277228789414416
+                "score_composed": 2.3969255680453956,
+                "score_penalty": 0.48,
+                "score_route": 4.993594933427907
             },
             "status": "Failed"
         },
@@ -40,33 +40,35 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.volkswagen.t2 and id=2241 at (x=-146.365, y=72.182, z=0.035)"
+                    ],
                     "outside_route_lanes": [],
                     "red_light": [],
-                    "route_dev": [
-                        "Agent deviated from the route at (x=57.464, y=201.9, z=0.033)"
-                    ],
+                    "route_dev": [],
                     "route_timeout": [],
-                    "stop_infraction": [],
+                    "stop_infraction": [
+                        "Agent ran a stop with id=2129 at (x=-145.577, y=76.551, z=0.0)"
+                    ],
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 199.95000297948718,
-                    "duration_system": 598.6330511569977,
-                    "route_length": 1247.5247794196757
+                    "duration_game": 15.625000232830644,
+                    "duration_system": 101.12053918838501,
+                    "route_length": 1870.88511243804
                 },
                 "route_id": "RouteScenario_20",
                 "scores": {
-                    "score_composed": 43.277228789414416,
-                    "score_penalty": 1.0,
-                    "score_route": 43.277228789414416
+                    "score_composed": 2.3969255680453956,
+                    "score_penalty": 0.48,
+                    "score_route": 4.993594933427907
                 },
-                "status": "Failed - Agent deviated from the route"
+                "status": "Failed"
             }
         ]
     },
     "eligible": true,
-    "entry_status": "Finished with agent errors",
+    "entry_status": "Finished",
     "labels": [
         "Avg. driving score",
         "Avg. route completion",
@@ -90,16 +92,16 @@
         "carla_speedometer"
     ],
     "values": [
-        "43.277",
-        "43.277",
-        "1.000",
+        "2.397",
+        "4.994",
+        "0.480",
+        "0.000",
+        "0.107",
         "0.000",
         "0.000",
+        "0.107",
         "0.000",
         "0.000",
-        "0.000",
-        "0.000",
-        "0.019",
         "0.000",
         "0.000"
     ]

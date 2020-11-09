@@ -3,10 +3,10 @@
         "global_record": {
             "index": -1,
             "infractions": {
-                "collisions_layout": 0.0,
+                "collisions_layout": 0.012688304338307171,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.18780601073441824,
-                "outside_route_lanes": 0.0,
+                "collisions_vehicle": 0.0,
+                "outside_route_lanes": 0.012688304338307171,
                 "red_light": 0.0,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
@@ -16,7 +16,7 @@
             "meta": {
                 "exceptions": [
                     [
-                        "RouteScenario_5",
+                        "RouteScenario_35",
                         0,
                         "Failed"
                     ]
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 2.8266404799982845,
-                "score_penalty": 0.6,
-                "score_route": 4.711067466663808
+                "score_composed": 19.503648110097988,
+                "score_penalty": 0.6345342178224458,
+                "score_route": 30.736952495689465
             },
             "status": "Failed"
         },
@@ -38,12 +38,14 @@
             {
                 "index": 0,
                 "infractions": {
-                    "collisions_layout": [],
-                    "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.diamondback.century and id=273 at (x=354.251, y=330.376, z=0.034)"
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.pole and id=0 at (x=113.242, y=57.481, z=10.19)"
                     ],
-                    "outside_route_lanes": [],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 26.343 meters (2.38% of the completed route)"
+                    ],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -51,15 +53,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 25.125000374391675,
-                    "duration_system": 121.45689678192139,
-                    "route_length": 1130.24134093902
+                    "duration_game": 339.42500505782664,
+                    "duration_system": 2346.5711710453033,
+                    "route_length": 2564.1038284200968
                 },
-                "route_id": "RouteScenario_5",
+                "route_id": "RouteScenario_35",
                 "scores": {
-                    "score_composed": 2.8266404799982845,
-                    "score_penalty": 0.6,
-                    "score_route": 4.711067466663808
+                    "score_composed": 19.503648110097988,
+                    "score_penalty": 0.6345342178224458,
+                    "score_route": 30.736952495689465
                 },
                 "status": "Failed"
             }
@@ -90,15 +92,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "2.827",
-        "4.711",
-        "0.600",
-        "0.000",
-        "0.188",
+        "19.504",
+        "30.737",
+        "0.635",
         "0.000",
         "0.000",
+        "0.013",
         "0.000",
         "0.000",
+        "0.013",
         "0.000",
         "0.000",
         "0.000"

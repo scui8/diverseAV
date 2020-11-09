@@ -45,7 +45,7 @@ class ScenarioManager(object):
     """
 
 
-    def __init__(self, timeout, debug_mode=False):
+    def __init__(self, timeout, debug_mode=False, control_log_path=None):
         """
         Setups up the parameters, which will be filled at load_scenario()
         """
@@ -81,6 +81,13 @@ class ScenarioManager(object):
 
         # setup dual agent mode
         self.dual_agent = False
+
+        # create the control log file that overwrites the old file and write the header row
+        self.control_log_path = control_log_path
+        if self.control_log_path:
+            print("creating control file at:", control_log_path)
+            with open(self.control_log_path, 'w') as control_log_file:
+                control_log_file.write("ts,agent_id,throttle,steer,brake\n")
 
     def signal_handler(self, signum, frame):
         """
@@ -155,6 +162,7 @@ class ScenarioManager(object):
             CarlaDataProvider.on_carla_tick()
 
             try:
+                # get control from agent
                 agent = 0
                 ego_action = self._agent()
                 if self.dual_agent:
@@ -163,6 +171,14 @@ class ScenarioManager(object):
                     ego_action = secondary_aciton
                     agent = 1
                 print("Agent {} action: {}".format(agent, ego_action))
+
+                # log agent control signal
+                if self.control_log_path:
+                    with open(self.control_log_path, "a") as control_log_file:
+                        control_log_file.write("{},{},{},{},{}\n".format(timestamp.frame, agent,
+                                                                         ego_action.throttle,
+                                                                         ego_action.steer,
+                                                                         ego_action.brake))
 
             # Special exception inside the agent that isn't caused by the agent
             except SensorReceivedNoData as e:
@@ -187,7 +203,7 @@ class ScenarioManager(object):
 
             spectator = CarlaDataProvider.get_world().get_spectator()
             ego_trans = self.ego_vehicles[0].get_transform()
-            spectator.set_transform(carla.Transform(ego_trans.location + carla.Location(z=50),
+            spectator.set_transform(carla.Transform(ego_trans.location + carla.Location(z=60),
                                                     carla.Rotation(pitch=-90)))
 
         if self._running and self.get_running_status():

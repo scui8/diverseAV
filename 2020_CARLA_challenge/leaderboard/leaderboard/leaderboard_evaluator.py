@@ -14,6 +14,7 @@ from __future__ import print_function
 
 import traceback
 import argparse
+import time
 from argparse import RawTextHelpFormatter
 from datetime import datetime
 from distutils.version import LooseVersion
@@ -31,7 +32,11 @@ from srunner.scenariomanager.timer import GameTime
 from srunner.scenariomanager.watchdog import Watchdog
 
 from leaderboard.scenarios.scenario_manager import ScenarioManager
+
+# import scanario generators
 from leaderboard.scenarios.route_scenario import RouteScenario
+from leaderboard.scenarios.fi_scenario import FIScenario
+
 from leaderboard.envs.sensor_interface import SensorConfigurationInvalid
 from leaderboard.autoagents.agent_wrapper import  AgentWrapper, AgentError
 from leaderboard.utils.statistics_manager import StatisticsManager
@@ -63,7 +68,7 @@ class LeaderboardEvaluator(object):
     wait_for_world = 20.0  # in seconds
     frame_rate = 40.0      # in Hz
 
-    def __init__(self, args, statistics_manager):
+    def __init__(self, args, statistics_manager, control_log_path=None):
         """
         Setup CARLA client and world
         Setup ScenarioManager
@@ -94,7 +99,7 @@ class LeaderboardEvaluator(object):
         self.module_agent = importlib.import_module(module_name)
 
         # Create the ScenarioManager
-        self.manager = ScenarioManager(args.timeout, args.debug > 1)
+        self.manager = ScenarioManager(args.timeout, args.debug > 1, control_log_path=control_log_path)
 
         # Time control for summary purposes
         self._start_time = GameTime.get_time()
@@ -309,9 +314,14 @@ class LeaderboardEvaluator(object):
 
         # Load the world and the scenario
         try:
+            # load the world
             self._load_and_wait_for_world(args, config.town, config.ego_vehicles)
             self._prepare_ego_vehicles(config.ego_vehicles, False)
-            scenario = RouteScenario(world=self.world, config=config, debug_mode=args.debug)
+            
+            # change to fault injection scenario
+            # scenario = RouteScenario(world=self.world, config=config, debug_mode=args.debug)
+            scenario = FIScenario(world=self.world, config=config, debug_mode=args.debug)
+            
             self.statistics_manager.set_scenario(scenario.scenario)
 
             # Night mode
@@ -455,14 +465,35 @@ def main():
     parser.add_argument("--checkpoint", type=str,
                         default='./simulation_results.json',
                         help="Path to checkpoint used for saving statistics and resuming")
+    
+    # diverse AV project additional arugments
     parser.add_argument("--dual_agent", action="store_true")
+    parser.add_argument("--control_log_path", default=None, type=str)
 
     arguments = parser.parse_args()
 
     statistics_manager = StatisticsManager()
 
     try:
-        leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager)
+        # setup control log path
+        if arguments.control_log_path:
+            control_log_path = arguments.control_log_path
+            if os.path.exists(control_log_path) and os.path.isdir(control_log_path):
+                routes = arguments.routes.split(".")[:-1][0]
+                routes = routes.split("/")[-2:]
+                routes = "-".join(routes)
+                timestr = time.strftime("%Y%m%d-%H%M%S")
+                if arguments.dual_agent:
+                    filename = routes + "-" + timestr + "_dual.csv"
+                else:
+                    filename = routes + "-" + timestr + "_single.csv"
+                control_log_path = os.path.join(control_log_path, filename)
+                print("writing control signal logs to {}".format(control_log_path))
+            else:
+                raise FileNotFoundError("control_log_path needs to be a valid directory")
+            leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager, control_log_path=control_log_path)
+        else:
+            leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager)
         leaderboard_evaluator.run(arguments)
 
     except Exception as e:

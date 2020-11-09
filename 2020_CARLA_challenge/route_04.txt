@@ -3,11 +3,11 @@
         "global_record": {
             "index": -1,
             "infractions": {
-                "collisions_layout": 0.030246837663520112,
+                "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
                 "collisions_vehicle": 0.0,
-                "outside_route_lanes": 0.030246837663520112,
-                "red_light": 0.060493675327040225,
+                "outside_route_lanes": 0.0,
+                "red_light": 0.08943666671756174,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
                 "stop_infraction": 0.0,
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 12.621488307594653,
-                "score_penalty": 0.3132712232026523,
-                "score_route": 40.289331967877324
+                "score_composed": 14.684206805790764,
+                "score_penalty": 0.7,
+                "score_route": 20.977438293986808
             },
             "status": "Failed"
         },
@@ -38,17 +38,12 @@
             {
                 "index": 0,
                 "infractions": {
-                    "collisions_layout": [
-                        "Agent collided against object with type=static.pole and id=0 at (x=149.203, y=193.773, z=0.309)"
-                    ],
+                    "collisions_layout": [],
                     "collisions_pedestrian": [],
                     "collisions_vehicle": [],
-                    "outside_route_lanes": [
-                        "Agent went outside its route lanes for about 5.782 meters (1.64% of the completed route)"
-                    ],
+                    "outside_route_lanes": [],
                     "red_light": [
-                        "Agent ran a red light 5806 at (x=-10.08, y=177.89, z=0.22)",
-                        "Agent ran a red light 5796 at (x=30.96, y=194.29, z=0.22)"
+                        "Agent ran a red light 116 at (x=143.12, y=4.83, z=0.103)"
                     ],
                     "route_dev": [],
                     "route_timeout": [],
@@ -56,15 +51,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 348.15000518783927,
-                    "duration_system": 1267.3657891750336,
-                    "route_length": 820.597062684722
+                    "duration_game": 25.80000038444996,
+                    "duration_system": 247.48649621009827,
+                    "route_length": 533.0058098516755
                 },
                 "route_id": "RouteScenario_4",
                 "scores": {
-                    "score_composed": 12.621488307594653,
-                    "score_penalty": 0.3132712232026523,
-                    "score_route": 40.289331967877324
+                    "score_composed": 14.684206805790764,
+                    "score_penalty": 0.7,
+                    "score_route": 20.977438293986808
                 },
                 "status": "Failed"
             }
@@ -95,15 +90,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "12.621",
-        "40.289",
-        "0.313",
+        "14.684",
+        "20.977",
+        "0.700",
         "0.000",
         "0.000",
-        "0.030",
-        "0.060",
         "0.000",
-        "0.030",
+        "0.089",
+        "0.000",
+        "0.000",
         "0.000",
         "0.000",
         "0.000"

@@ -5,9 +5,9 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.012773717078187622,
-                "outside_route_lanes": 0.012773717078187622,
-                "red_light": 0.025547434156375243,
+                "collisions_vehicle": 0.0,
+                "outside_route_lanes": 0.0,
+                "red_light": 0.0,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
                 "stop_infraction": 0.0,
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 23.017153414350876,
-                "score_penalty": 0.2863956551815471,
-                "score_route": 80.36837500122071
+                "score_composed": 0.0,
+                "score_penalty": 1.0,
+                "score_route": 0.0
             },
             "status": "Failed"
         },
@@ -40,31 +40,24 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=3349 at (x=80.002, y=187.287, z=0.253)"
-                    ],
-                    "outside_route_lanes": [
-                        "Agent went outside its route lanes for about 20.801 meters (2.59% of the completed route)"
-                    ],
-                    "red_light": [
-                        "Agent ran a red light 3215 at (x=146.0, y=184.83, z=0.22)",
-                        "Agent ran a red light 3218 at (x=58.05, y=185.03, z=0.22)"
-                    ],
+                    "collisions_vehicle": [],
+                    "outside_route_lanes": [],
+                    "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
                     "stop_infraction": [],
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 528.800007879734,
-                    "duration_system": 1717.7839934825897,
-                    "route_length": 974.0864898139865
+                    "duration_game": 42.50000063329935,
+                    "duration_system": 228.0027904510498,
+                    "route_length": 1014.5683614271728
                 },
                 "route_id": "RouteScenario_3",
                 "scores": {
-                    "score_composed": 23.017153414350876,
-                    "score_penalty": 0.2863956551815471,
-                    "score_route": 80.36837500122071
+                    "score_composed": 0.0,
+                    "score_penalty": 1.0,
+                    "score_route": 0.0
                 },
                 "status": "Failed"
             }
@@ -95,15 +88,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "23.017",
-        "80.368",
-        "0.286",
         "0.000",
-        "0.013",
         "0.000",
-        "0.026",
+        "1.000",
         "0.000",
-        "0.013",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
         "0.000",
         "0.000",
         "0.000"

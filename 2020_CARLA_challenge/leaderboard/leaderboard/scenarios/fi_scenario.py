@@ -27,13 +27,11 @@ from srunner.scenarioconfigs.scenario_configuration import ScenarioConfiguration
 from srunner.scenariomanager.scenarioatomics.atomic_behaviors import Idle, ScenarioTriggerer
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
 from srunner.scenarios.basic_scenario import BasicScenario
-from srunner.scenarios.control_loss import ControlLoss
-from srunner.scenarios.follow_leading_vehicle import FollowLeadingVehicle
-from srunner.scenarios.object_crash_vehicle import DynamicObjectCrossing
-from srunner.scenarios.object_crash_intersection import VehicleTurningRoute
-from srunner.scenarios.other_leading_vehicle import OtherLeadingVehicle
-from srunner.scenarios.maneuver_opposite_direction import ManeuverOppositeDirection
-from srunner.scenarios.junction_crossing_route import SignalJunctionCrossingRoute, NoSignalJunctionCrossingRoute
+
+# list of predefined scenarios with python api
+from srunner.scenarios.lead_slowdown import LeadSlowDown
+from srunner.scenarios.ghost_cutin import GhostCutIn
+from srunner.scenarios.front_accident import FrontAccident
 
 from srunner.scenariomanager.scenarioatomics.atomic_criteria import (CollisionTest,
                                                                      InRouteTest,
@@ -46,22 +44,17 @@ from srunner.scenariomanager.scenarioatomics.atomic_criteria import (CollisionTe
 from leaderboard.utils.route_parser import RouteParser, TRIGGER_THRESHOLD, TRIGGER_ANGLE_THRESHOLD
 from leaderboard.utils.route_manipulation import interpolate_trajectory
 
-ROUTESCENARIO = ["RouteScenario"]
+FISCENARIO = ["FIScenario"]
 
 SECONDS_GIVEN_PER_METERS = 0.8
 INITIAL_SECONDS_DELAY = 5.0
 
 NUMBER_CLASS_TRANSLATION = {
-    "Scenario1": ControlLoss,
-    "Scenario2": FollowLeadingVehicle,
-    "Scenario3": DynamicObjectCrossing,
-    "Scenario4": VehicleTurningRoute,
-    "Scenario5": OtherLeadingVehicle,
-    "Scenario6": ManeuverOppositeDirection,
-    "Scenario7": SignalJunctionCrossingRoute,
-    "Scenario8": SignalJunctionCrossingRoute,
-    "Scenario9": SignalJunctionCrossingRoute,
-    "Scenario10": NoSignalJunctionCrossingRoute
+    "Scenario1": LeadSlowDown,
+    "Scenario2": GhostCutIn,
+    "Scenario3": FrontAccident,
+    # "Scenario4": DynamicObjectCrossing,
+    # "Scenario0": AccidientAhead
 }
 
 
@@ -169,14 +162,14 @@ def compare_scenarios(scenario_choice, existent_scenario):
     return False
 
 
-class RouteScenario(BasicScenario):
+class FIScenario(BasicScenario):
 
     """
-    Implementation of a RouteScenario, i.e. a scenario that consists of driving along a pre-defined route,
-    along which several smaller scenarios are triggered
+    Implementation of a FIScenario, i.e. a scenario that consists of driving along a pre-defined route,
+    along which several smaller scenarios are triggered based on RouteScenario for failure mode study
     """
 
-    category = "RouteScenario"
+    category = "FIScenario"
 
     def __init__(self, world, config, debug_mode=0, criteria_enable=True):
         """
@@ -186,7 +179,7 @@ class RouteScenario(BasicScenario):
         self.route = None
         self.sampled_scenarios_definitions = None
 
-        self._update_route(world, config, debug_mode>0)
+        self._update_route(world, config, debug_mode>2)
 
         ego_vehicle = self._update_ego_vehicle()
 
@@ -195,15 +188,9 @@ class RouteScenario(BasicScenario):
                                                              self.sampled_scenarios_definitions,
                                                              scenarios_per_tick=10,
                                                              timeout=self.timeout,
-                                                             debug_mode=debug_mode>1)
+                                                             debug_mode=debug_mode>0)
 
-        # !!!!!!!!!!!!!!!!!!!!!!!!! Warning !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # !!!!!!!!!!!!!!!!!!!!!!!!!! TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        print("Testing, disabling the scenarios")
-        self.list_scenarios = list()
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        super(RouteScenario, self).__init__(name=config.name,
+        super(FIScenario, self).__init__(name=config.name,
                                             ego_vehicles=[ego_vehicle],
                                             config=config,
                                             world=world,
@@ -242,6 +229,7 @@ class RouteScenario(BasicScenario):
 
         # Print route in debug mode
         if debug_mode:
+            print("<<<<<<<<<<<< debug mode enabled >>>>>>>>>>>>>>>")
             self._draw_waypoints(world, self.route, vertical_shift=1.0, persistency=50000.0)
 
     def _update_ego_vehicle(self):
@@ -451,18 +439,18 @@ class RouteScenario(BasicScenario):
         """
         Set other_actors to the superset of all scenario actors
         """
-        # Create the background activity of the route
+        # turn off all background traffics
         town_amount = {
-            'Town01': 120,
-            'Town02': 100,
-            'Town03': 120,
-            'Town04': 200,
-            'Town05': 120,
-            'Town06': 150,
-            'Town07': 110,
-            'Town08': 180,
-            'Town09': 300,
-            'Town10': 120,
+            'Town01': 0,
+            'Town02': 0,
+            'Town03': 0,
+            'Town04': 0,
+            'Town05': 0,
+            'Town06': 0,
+            'Town07': 0,
+            'Town08': 0,
+            'Town09': 0,
+            'Town10': 0,
         }
 
         amount = town_amount[config.town] if config.town in town_amount else 0

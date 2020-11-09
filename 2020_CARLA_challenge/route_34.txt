@@ -5,8 +5,8 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.18780601073441824,
-                "outside_route_lanes": 0.0,
+                "collisions_vehicle": 0.0,
+                "outside_route_lanes": 0.018830861161018803,
                 "red_light": 0.0,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
@@ -16,7 +16,7 @@
             "meta": {
                 "exceptions": [
                     [
-                        "RouteScenario_5",
+                        "RouteScenario_34",
                         0,
                         "Failed"
                     ]
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 2.8266404799982845,
-                "score_penalty": 0.6,
-                "score_route": 4.711067466663808
+                "score_composed": 24.57330001310294,
+                "score_penalty": 0.9888618181549018,
+                "score_route": 24.850084776206433
             },
             "status": "Failed"
         },
@@ -40,10 +40,10 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.diamondback.century and id=273 at (x=354.251, y=330.376, z=0.034)"
+                    "collisions_vehicle": [],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 6.131 meters (1.11% of the completed route)"
                     ],
-                    "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -51,15 +51,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 25.125000374391675,
-                    "duration_system": 121.45689678192139,
-                    "route_length": 1130.24134093902
+                    "duration_game": 138.75000206753612,
+                    "duration_system": 721.1051342487335,
+                    "route_length": 2136.987313757202
                 },
-                "route_id": "RouteScenario_5",
+                "route_id": "RouteScenario_34",
                 "scores": {
-                    "score_composed": 2.8266404799982845,
-                    "score_penalty": 0.6,
-                    "score_route": 4.711067466663808
+                    "score_composed": 24.57330001310294,
+                    "score_penalty": 0.9888618181549018,
+                    "score_route": 24.850084776206433
                 },
                 "status": "Failed"
             }
@@ -90,15 +90,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "2.827",
-        "4.711",
-        "0.600",
-        "0.000",
-        "0.188",
+        "24.573",
+        "24.850",
+        "0.989",
         "0.000",
         "0.000",
         "0.000",
         "0.000",
+        "0.000",
+        "0.019",
         "0.000",
         "0.000",
         "0.000"

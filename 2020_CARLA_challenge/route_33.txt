@@ -5,7 +5,7 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.18780601073441824,
+                "collisions_vehicle": 0.006975347053693379,
                 "outside_route_lanes": 0.0,
                 "red_light": 0.0,
                 "route_dev": 0.0,
@@ -16,7 +16,7 @@
             "meta": {
                 "exceptions": [
                     [
-                        "RouteScenario_5",
+                        "RouteScenario_33",
                         0,
                         "Failed"
                     ]
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 2.8266404799982845,
+                "score_composed": 42.469373061172895,
                 "score_penalty": 0.6,
-                "score_route": 4.711067466663808
+                "score_route": 70.78228843528817
             },
             "status": "Failed"
         },
@@ -41,7 +41,7 @@
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
                     "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.diamondback.century and id=273 at (x=354.251, y=330.376, z=0.034)"
+                        "Agent collided against object with type=vehicle.gazelle.omafiets and id=2448 at (x=-107.769, y=51.149, z=8.93)"
                     ],
                     "outside_route_lanes": [],
                     "red_light": [],
@@ -51,15 +51,15 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 25.125000374391675,
-                    "duration_system": 121.45689678192139,
-                    "route_length": 1130.24134093902
+                    "duration_game": 271.07500403933227,
+                    "duration_system": 1955.5657424926758,
+                    "route_length": 2025.3942837912246
                 },
-                "route_id": "RouteScenario_5",
+                "route_id": "RouteScenario_33",
                 "scores": {
-                    "score_composed": 2.8266404799982845,
+                    "score_composed": 42.469373061172895,
                     "score_penalty": 0.6,
-                    "score_route": 4.711067466663808
+                    "score_route": 70.78228843528817
                 },
                 "status": "Failed"
             }
@@ -90,11 +90,11 @@
         "carla_speedometer"
     ],
     "values": [
-        "2.827",
-        "4.711",
+        "42.469",
+        "70.782",
         "0.600",
         "0.000",
-        "0.188",
+        "0.007",
         "0.000",
         "0.000",
         "0.000",

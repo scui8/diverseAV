@@ -154,9 +154,9 @@ class ImageAgent(BaseAgent):
 
         brake = desired_speed < 0.4 or (speed / desired_speed) > 1.1
 
-        delta = np.clip(desired_speed - speed, 0.0, 0.25)
+        delta = np.clip(desired_speed - speed, 0.0, 0.35)
         throttle = self._speed_controller.step(delta)
-        throttle = np.clip(throttle, 0.0, 0.75)
+        throttle = np.clip(throttle, 0.0, 0.9)
         throttle = throttle if not brake else 0.0
 
         control = carla.VehicleControl()

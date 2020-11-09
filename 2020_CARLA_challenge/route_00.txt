@@ -1,37 +1,8 @@
 {
     "_checkpoint": {
-        "global_record": {
-            "index": -1,
-            "infractions": {
-                "collisions_layout": 0.0,
-                "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.11746169306248941,
-                "outside_route_lanes": 0.11746169306248941,
-                "red_light": 0.0,
-                "route_dev": 0.0,
-                "route_timeout": 0.0,
-                "stop_infraction": 0.0,
-                "vehicle_blocked": 0.0
-            },
-            "meta": {
-                "exceptions": [
-                    [
-                        "RouteScenario_0",
-                        0,
-                        "Failed"
-                    ]
-                ]
-            },
-            "route_id": -1,
-            "scores": {
-                "score_composed": 3.974941422092542,
-                "score_penalty": 0.4540650698830563,
-                "score_route": 8.754122890616276
-            },
-            "status": "Failed"
-        },
+        "global_record": {},
         "progress": [
-            1,
+            0,
             1
         ],
         "records": [
@@ -40,12 +11,8 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.mini.cooperst and id=8362 at (x=13.551, y=111.866, z=0.332)"
-                    ],
-                    "outside_route_lanes": [
-                        "Agent went outside its route lanes for about 21.57 meters (24.32% of the completed route)"
-                    ],
+                    "collisions_vehicle": [],
+                    "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -53,36 +20,23 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 34.86666848510504,
-                    "duration_system": 159.6344404220581,
-                    "route_length": 972.5033469980193
+                    "duration_game": 0.0,
+                    "duration_system": 0.0,
+                    "route_length": 737.4217028017997
                 },
                 "route_id": "RouteScenario_0",
                 "scores": {
-                    "score_composed": 3.974941422092542,
-                    "score_penalty": 0.4540650698830563,
-                    "score_route": 8.754122890616276
+                    "score_composed": 0.0,
+                    "score_penalty": 1.0,
+                    "score_route": 0.0
                 },
-                "status": "Failed"
+                "status": "Failed - Simulation crashed"
             }
         ]
     },
-    "eligible": true,
-    "entry_status": "Finished",
-    "labels": [
-        "Avg. driving score",
-        "Avg. route completion",
-        "Avg. infraction penalty",
-        "Collisions with pedestrians",
-        "Collisions with vehicles",
-        "Collisions with layout",
-        "Red lights infractions",
-        "Stop sign infractions",
-        "Off-road infractions",
-        "Route deviations",
-        "Route timeouts",
-        "Agent blocked"
-    ],
+    "eligible": false,
+    "entry_status": "Crashed",
+    "labels": [],
     "sensors": [
         "carla_camera",
         "carla_camera",
@@ -91,18 +45,5 @@
         "carla_gnss",
         "carla_speedometer"
     ],
-    "values": [
-        "3.975",
-        "8.754",
-        "0.454",
-        "0.000",
-        "0.117",
-        "0.000",
-        "0.000",
-        "0.000",
-        "0.117",
-        "0.000",
-        "0.000",
-        "0.000"
-    ]
+    "values": []
 }

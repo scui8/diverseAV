@@ -5,9 +5,9 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 0.18780601073441824,
-                "outside_route_lanes": 0.0,
-                "red_light": 0.0,
+                "collisions_vehicle": 0.0,
+                "outside_route_lanes": 0.015517052426612369,
+                "red_light": 0.031034104853224737,
                 "route_dev": 0.0,
                 "route_timeout": 0.0,
                 "stop_infraction": 0.0,
@@ -16,7 +16,7 @@
             "meta": {
                 "exceptions": [
                     [
-                        "RouteScenario_5",
+                        "RouteScenario_36",
                         0,
                         "Failed"
                     ]
@@ -24,9 +24,9 @@
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 2.8266404799982845,
-                "score_penalty": 0.6,
-                "score_route": 4.711067466663808
+                "score_composed": 12.610070677499639,
+                "score_penalty": 0.4028781247399629,
+                "score_route": 31.299963694079423
             },
             "status": "Failed"
         },
@@ -40,26 +40,29 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.diamondback.century and id=273 at (x=354.251, y=330.376, z=0.034)"
+                    "collisions_vehicle": [],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 117.795 meters (17.78% of the completed route)"
                     ],
-                    "outside_route_lanes": [],
-                    "red_light": [],
+                    "red_light": [
+                        "Agent ran a red light 569 at (x=53.45, y=-167.05, z=0.3)",
+                        "Agent ran a red light 564 at (x=135.65, y=-166.7, z=-0.3)"
+                    ],
                     "route_dev": [],
                     "route_timeout": [],
                     "stop_infraction": [],
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 25.125000374391675,
-                    "duration_system": 121.45689678192139,
-                    "route_length": 1130.24134093902
+                    "duration_game": 155.97500232420862,
+                    "duration_system": 1269.3239464759827,
+                    "route_length": 2058.955397544899
                 },
-                "route_id": "RouteScenario_5",
+                "route_id": "RouteScenario_36",
                 "scores": {
-                    "score_composed": 2.8266404799982845,
-                    "score_penalty": 0.6,
-                    "score_route": 4.711067466663808
+                    "score_composed": 12.610070677499639,
+                    "score_penalty": 0.4028781247399629,
+                    "score_route": 31.299963694079423
                 },
                 "status": "Failed"
             }
@@ -90,15 +93,15 @@
         "carla_speedometer"
     ],
     "values": [
-        "2.827",
-        "4.711",
-        "0.600",
-        "0.000",
-        "0.188",
+        "12.610",
+        "31.300",
+        "0.403",
         "0.000",
         "0.000",
         "0.000",
+        "0.031",
         "0.000",
+        "0.016",
         "0.000",
         "0.000",
         "0.000"

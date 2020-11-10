@@ -135,6 +135,9 @@ class ImageModel(pl.LightningModule):
             out = self.net(nn_input)
 
         return out, (target_cam, target_heatmap_cam)
+
+    def enable_fi(enable=True):
+        self.fi_enable=enable
     ##-- pyTorch FI Integration End--##
 
     @torch.no_grad()

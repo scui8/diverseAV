@@ -184,5 +184,8 @@ class ImageAgent(BaseAgent):
     def set_pfi_inj(self, pfi_inj, enable=True):
         self.net.pfi_inj = pfi_inj
         self.net.fi_enable=enable
+
+    def enable_fi(enable=True):
+        self.net.enable_fi(enable)
     ##-- pyTorch FI Integration End--##
 

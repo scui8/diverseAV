@@ -45,6 +45,19 @@ class pyTorchFI_Carla_Utils(object):
         assert len(loc) == 5
 
         return tuple(loc)
+    
+    def random_value(min_val=-1, max_val=1):
+        return random.uniform(min_val, max_val)
+
+    def random_single_weight_injection(pfi_model, conv_id=-1, min_val=-1, max_val=1):
+        # Permenant or 'Stuck at' fault for a weight.
+        loc = pyTorchFI_Carla_Utils.random_weight_location(pfi_model, conv_id)
+        (conv_idx, k, c_in, kH, kW)  = loc
+        val = pyTorchFI_Carla_Utils.random_value(min_val, max_val)
+
+        print("\033[0;32m* FI Params-> Loc:{}, Val:{} \033[0m\n".format(loc, val))
+
+        return pfi_model.declare_weight_fi(conv_num=conv_idx, k=k, c=c_in, h=kH, w=kW, value=val)
 
     @staticmethod
     def print_pfi_model(pfi_model):

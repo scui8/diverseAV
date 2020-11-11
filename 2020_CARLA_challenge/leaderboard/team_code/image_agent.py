@@ -10,6 +10,9 @@ from PIL import Image, ImageDraw
 from carla_project.src.image_model import ImageModel
 from carla_project.src.converter import Converter
 
+##-- pyTorch FI Integration--##
+from carla_project.src.pyTorchFI_Carla import pyTorchFI_Carla_Utils as pfi_carla_utils
+
 from team_code.base_agent import BaseAgent
 from team_code.pid_controller import PIDController
 
@@ -52,6 +55,8 @@ class ImageAgent(BaseAgent):
         self.net = ImageModel.load_from_checkpoint(path_to_conf_file)
         self.net.cuda()
         self.net.eval()
+        ##-- pyTorch FI Integration--##
+        self.net.init_pytorch_fi()
 
     def _init(self):
         super()._init()
@@ -171,4 +176,16 @@ class ImageAgent(BaseAgent):
                     self.step)
 
         return control
+
+    ##-- pyTorch FI Integration--##
+    def get_pfi_model(self):
+        return self.net.get_pfi_model()
+
+    def set_pfi_inj(self, pfi_inj, enable=True):
+        self.net.pfi_inj = pfi_inj
+        self.net.fi_enable=enable
+
+    def enable_fi(enable=True):
+        self.net.enable_fi(enable)
+    ##-- pyTorch FI Integration End--##
 

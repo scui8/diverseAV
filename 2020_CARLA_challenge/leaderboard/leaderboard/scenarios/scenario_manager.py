@@ -170,7 +170,7 @@ class ScenarioManager(object):
                 if not ego_action:
                     ego_action = secondary_aciton
                     agent = 1
-                print("Agent {} action: {}".format(agent, ego_action))
+                #print("Agent {} action: {}".format(agent, ego_action))
 
                 # log agent control signal
                 if self.control_log_path:

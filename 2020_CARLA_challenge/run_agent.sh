@@ -11,13 +11,23 @@ else
     CHECKPOINT_ENDPOINT="$(dirname $TEAM_CONFIG)/$(basename $ROUTES .xml).txt"
 fi
 
+#echo python3 leaderboard/leaderboard/leaderboard_evaluator.py \
+#--track=SENSORS \
+#--scenarios=leaderboard/data/all_towns_traffic_scenarios_public.json  \
+#--agent=${TEAM_AGENT} \
+#--agent-config=${TEAM_CONFIG} \
+#--routes=${ROUTES} \
+#--checkpoint=${CHECKPOINT_ENDPOINT} \
+#--port=${PORT}
+
 echo python3 leaderboard/leaderboard/leaderboard_evaluator.py \
 --track=SENSORS \
---scenarios=leaderboard/data/all_towns_traffic_scenarios_public.json  \
---agent=${TEAM_AGENT} \
---agent-config=${TEAM_CONFIG} \
---routes=${ROUTES} \
---checkpoint=${CHECKPOINT_ENDPOINT} \
---port=${PORT}
+--scenarios=leaderboard/data/fi_front_accidient.json \
+--agent=image_agent.py \
+--agent-config=epoch24.ckpt \
+--routes=leaderboard/data/routes_fi/route_highway.xml \
+--port=2000 \
+--trafficManagerSeed=0 \
+--enable_fi=True
 
 echo "Done. See $CHECKPOINT_ENDPOINT for detailed results."

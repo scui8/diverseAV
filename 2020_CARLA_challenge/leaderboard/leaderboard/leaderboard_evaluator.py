@@ -42,6 +42,9 @@ from leaderboard.autoagents.agent_wrapper import  AgentWrapper, AgentError
 from leaderboard.utils.statistics_manager import StatisticsManager
 from leaderboard.utils.route_indexer import RouteIndexer
 
+##-- pyTorch FI Integration--##
+from carla_project.src.pyTorchFI_Carla import pyTorchFI_Carla_Utils as pfi_carla_utils
+
 
 sensors_to_icons = {
     'sensor.camera.semantic_segmentation':        'carla_camera',
@@ -354,6 +357,17 @@ class LeaderboardEvaluator(object):
 
         print("\033[1m> Running the route\033[0m")
 
+        ### Setup Fault Injector
+        print("\033[36m\033[1m==> Configuring pyTorchFI\033[0m")
+        if args.enable_fi:
+            pfi_model = self.agent_instance.get_pfi_model()
+            # pfi_carla_utils.print_pfi_model(pfi_model)
+            pfi_inj = pfi_carla_utils.random_single_weight_injection(pfi_model, conv_id=60, min_val=-100, max_val=100)
+            self.agent_instance.set_pfi_inj(pfi_inj)
+            # pfi_carla_utils.get_weight_distribution(pfi_model)
+        else:
+            print("\033[93m[X] Fault Injection Disabled\033[0m")
+
         # Run the scenario
         try:
             self.manager.run_scenario()
@@ -469,6 +483,7 @@ def main():
     # diverse AV project additional arugments
     parser.add_argument("--dual_agent", action="store_true")
     parser.add_argument("--control_log_path", default=None, type=str)
+    parser.add_argument("--enable_fi", default=False, help="Enable pyTorchFI")
 
     arguments = parser.parse_args()
 

@@ -482,7 +482,7 @@ def main():
     
     # diverse AV project additional arugments
     parser.add_argument("--dual_agent", action="store_true")
-    parser.add_argument("--control_log_path", default=None, type=str)
+    parser.add_argument("--log_path", default=None, type=str)
     parser.add_argument("--enable_fi", default=False, help="Enable pyTorchFI")
 
     arguments = parser.parse_args()
@@ -491,19 +491,22 @@ def main():
 
     try:
         # setup control log path
-        if arguments.control_log_path:
-            control_log_path = arguments.control_log_path
+        if arguments.log_path:
+            control_log_path = arguments.log_path
             if os.path.exists(control_log_path) and os.path.isdir(control_log_path):
                 routes = arguments.routes.split(".")[:-1][0]
                 routes = routes.split("/")[-2:]
-                routes = "-".join(routes)
-                timestr = time.strftime("%Y%m%d-%H%M%S")
+                routes = "_".join(routes)
+
+                scenarios = arguments.scenarios.split(".")[:-1][0]
+                scenarios = scenarios.split("/")[-2:]
+                scenarios = "_".join(scenarios)
+                timestr = time.strftime("%m%d_%H%M%S")
                 if arguments.dual_agent:
-                    filename = routes + "-" + timestr + "_dual.csv"
+                    filename = routes + "-" + timestr + "-" + scenarios + "-dual.csv"
                 else:
-                    filename = routes + "-" + timestr + "_single.csv"
+                    filename = routes + "-" + timestr + "-" + scenarios + "-single.csv"
                 control_log_path = os.path.join(control_log_path, filename)
-                print("writing control signal logs to {}".format(control_log_path))
             else:
                 raise FileNotFoundError("control_log_path needs to be a valid directory")
             leaderboard_evaluator = LeaderboardEvaluator(arguments, statistics_manager, control_log_path=control_log_path)

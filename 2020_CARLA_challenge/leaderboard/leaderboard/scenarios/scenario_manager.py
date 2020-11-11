@@ -84,10 +84,25 @@ class ScenarioManager(object):
 
         # create the control log file that overwrites the old file and write the header row
         self.control_log_path = control_log_path
+        self.trajectory_log_path = control_log_path
+        self.cvip_log_path = control_log_path
         if self.control_log_path:
-            print("creating control file at:", control_log_path)
+            control_log_path_base = control_log_path.split(".")[0]
+            self.control_log_path = control_log_path_base + "_ctl.csv"
+            print("creating control dump file at:", self.control_log_path)
             with open(self.control_log_path, 'w') as control_log_file:
                 control_log_file.write("ts,agent_id,throttle,steer,brake\n")
+
+            self.trajectory_log_path = control_log_path_base + "_traj.csv"
+            print("creating ego trajectory dump file at:", self.trajectory_log_path)
+            with open(self.trajectory_log_path, 'w') as trajectory_log_file:
+                trajectory_log_file.write("ts,agent_id,x,y,z\n")
+
+            self.cvip_log_path = control_log_path_base + "_cvip.csv"
+            print("creating cvip dump file at:", self.cvip_log_path)
+            with open(self.cvip_log_path, 'w') as cvip_log_file:
+                cvip_log_file.write("ts,agent_id,dist\n")
+
 
     def signal_handler(self, signum, frame):
         """
@@ -148,6 +163,20 @@ class ScenarioManager(object):
             if timestamp:
                 self._tick_scenario(timestamp)
 
+    def _find_cvip(self, actor_list):
+        if len(actor_list) == 1 and self.ego_vehicles[0] in actor_list:
+            return None
+        ego_location = CarlaDataProvider.get_location(self.ego_vehicles[0])
+        cvip = float('inf')
+        for actor in actor_list:
+            if self.ego_vehicles[0] != actor:
+                actor_location = CarlaDataProvider.get_location(actor)
+                dist = (ego_location.x - actor_location.x)**2 + (ego_location.y - actor_location.y)**2 + (ego_location.z - actor_location.z)**2
+                dist = dist ** 0.5
+                if dist < cvip:
+                    cvip = dist
+        return cvip
+
     def _tick_scenario(self, timestamp):
         """
         Run next tick of scenario and the agent and tick the world.
@@ -179,6 +208,22 @@ class ScenarioManager(object):
                                                                          ego_action.throttle,
                                                                          ego_action.steer,
                                                                          ego_action.brake))
+
+                # also dumping agent trojectory
+                live_actors = CarlaDataProvider._carla_actor_pool.values()
+                if self.trajectory_log_path:
+                    ego_location = CarlaDataProvider.get_location(self.ego_vehicles[0])
+                    with open(self.trajectory_log_path, "a") as trajectory_log_file:
+                        trajectory_log_file.write("{},{},{},{},{}\n".format(timestamp.frame, agent,
+                                                                            ego_location.x,
+                                                                            ego_location.y,
+                                                                            ego_location.z))
+                
+                # calculate the closest vehicle in path
+                cvip = self._find_cvip(CarlaDataProvider._carla_actor_pool.values())
+                if self.cvip_log_path and cvip:
+                    with open(self.cvip_log_path, "a") as cvip_log_file:
+                        cvip_log_file.write("{},{},{}\n".format(timestamp.frame, agent, cvip))
 
             # Special exception inside the agent that isn't caused by the agent
             except SensorReceivedNoData as e:

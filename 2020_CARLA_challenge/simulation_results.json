@@ -1,8 +1,29 @@
 {
     "_checkpoint": {
-        "global_record": {},
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 0.0,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 0.0,
+                "outside_route_lanes": 0.0,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 0.0
+            },
+            "meta": {},
+            "route_id": -1,
+            "scores": {
+                "score_composed": 100.0,
+                "score_penalty": 1.0,
+                "score_route": 100.0
+            },
+            "status": "Completed"
+        },
         "progress": [
-            0,
+            1,
             1
         ],
         "records": [
@@ -20,8 +41,8 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 21.1000003144145,
-                    "duration_system": 66.91730690002441,
+                    "duration_game": 25.650000382214785,
+                    "duration_system": 78.28896594047546,
                     "route_length": 161.56007523683252
                 },
                 "route_id": "RouteScenario_0",
@@ -34,9 +55,22 @@
             }
         ]
     },
-    "eligible": false,
-    "entry_status": "Started",
-    "labels": [],
+    "eligible": true,
+    "entry_status": "Finished",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
     "sensors": [
         "carla_camera",
         "carla_camera",
@@ -45,5 +79,18 @@
         "carla_gnss",
         "carla_speedometer"
     ],
-    "values": []
+    "values": [
+        "100.000",
+        "100.000",
+        "1.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000"
+    ]
 }

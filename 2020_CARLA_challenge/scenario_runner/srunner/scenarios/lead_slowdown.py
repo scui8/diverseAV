@@ -136,7 +136,7 @@ class LeadSlowDown(BasicScenario):
         driving_to_next_intersection_second = py_trees.composites.Sequence("Start Braking")
         driving_to_next_intersection_second.add_child(InTriggerDistanceToVehicle(self.other_actors[0],
                                                                           self.ego_vehicles[0],
-                                                                          distance=25,
+                                                                          distance=30,
                                                                           name="Distance"))
         driving_to_next_intersection_second.add_child(StopVehicle(self.other_actors[0], self._other_actor_max_brake))
         driving_to_next_intersection_second.add_child(StandStill(self.other_actors[0], name="check stop", duration=2))

@@ -142,10 +142,10 @@ class GhostCutIn(BasicScenario):
                                                                           name="Distance"))
         driving_to_next_intersection_second.add_child(LaneChange(self.other_actors[0],
                                                                  direction="right",
-                                                                 distance_same_lane=16,
+                                                                 distance_same_lane=15,
                                                                  distance_other_lane=200,
                                                                  distance_lane_change=10,
-                                                                 speed=14))
+                                                                 speed=13.5))
 
 
         # construct scenario

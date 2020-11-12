@@ -14,7 +14,7 @@ The code currently provide several scenarios for fault-injection evaluation. The
 1. Leading vehicle slowing down 
 2. Ghost-cut-in from the left
 3. Accident in front that involves other cars
-4. ...
+4. Leading vehicle on the other lane cut in
 
 To run scenarios, choose scenarios under the folder `leaderboard/data/` and look for those start with the `fi` prefix. you need to pass the scenario json file using the scenario flag for example `--scenarios=leaderboard/data/fi_*.json`. When running these scenarios with the `fi` prefix, make sure you run it with `--routes=leaderboard/data/routes_fi/route_highway.xml`, other combinations are not tested.
 

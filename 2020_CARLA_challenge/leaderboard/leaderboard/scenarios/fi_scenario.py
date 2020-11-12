@@ -32,6 +32,7 @@ from srunner.scenarios.basic_scenario import BasicScenario
 from srunner.scenarios.lead_slowdown import LeadSlowDown
 from srunner.scenarios.ghost_cutin import GhostCutIn
 from srunner.scenarios.front_accident import FrontAccident
+from srunner.scenarios.lead_cutin import LeadCutIn
 
 from srunner.scenariomanager.scenarioatomics.atomic_criteria import (CollisionTest,
                                                                      InRouteTest,
@@ -53,8 +54,7 @@ NUMBER_CLASS_TRANSLATION = {
     "Scenario1": LeadSlowDown,
     "Scenario2": GhostCutIn,
     "Scenario3": FrontAccident,
-    # "Scenario4": DynamicObjectCrossing,
-    # "Scenario0": AccidientAhead
+    "Scenario5": LeadCutIn,
 }
 
 

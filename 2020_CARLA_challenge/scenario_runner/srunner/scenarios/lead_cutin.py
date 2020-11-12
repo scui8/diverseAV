@@ -41,7 +41,7 @@ from srunner.scenarios.basic_scenario import BasicScenario
 from srunner.tools.scenario_helper import get_waypoint_in_distance
 
 
-class GhostCutIn(BasicScenario):
+class LeadCutIn(BasicScenario):
 
     """
     This class holds everything required for a simple "Follow a leading vehicle"
@@ -61,8 +61,8 @@ class GhostCutIn(BasicScenario):
         """
 
         self._map = CarlaDataProvider.get_map()
-        self._first_vehicle_location = 0
-        self._first_vehicle_speed = 200
+        self._first_vehicle_location = 25
+        self._first_vehicle_speed = 22
         self._reference_waypoint = self._map.get_waypoint(config.trigger_points[0].location)
         self._other_actor_max_brake = 1.0
         self._other_actor_stop_in_front_intersection = 20
@@ -70,7 +70,7 @@ class GhostCutIn(BasicScenario):
         # Timeout of scenario in seconds
         self.timeout = timeout
 
-        super(GhostCutIn, self).__init__("FollowVehicle",
+        super(LeadCutIn, self).__init__("FollowVehicle",
                                                    ego_vehicles,
                                                    config,
                                                    world,
@@ -103,7 +103,7 @@ class GhostCutIn(BasicScenario):
                            self._other_actor_transform.location.y - 5,
                            self._other_actor_transform.location.z - 500),
             self._other_actor_transform.rotation)
-        first_vehicle = CarlaDataProvider.request_new_actor('vehicle.tesla.model3',
+        first_vehicle = CarlaDataProvider.request_new_actor('vehicle.audi.a2',
                                                             first_vehicle_transform)
         first_vehicle.set_simulate_physics(enabled=True)
         self.other_actors.append(first_vehicle)
@@ -138,14 +138,14 @@ class GhostCutIn(BasicScenario):
         driving_to_next_intersection_second = py_trees.composites.Sequence("Merge Lane")
         driving_to_next_intersection_second.add_child(InTriggerDistanceToVehicle(self.other_actors[0],
                                                                           self.ego_vehicles[0],
-                                                                          distance=4,
+                                                                          distance=7,
                                                                           name="Distance"))
         driving_to_next_intersection_second.add_child(LaneChange(self.other_actors[0],
                                                                  direction="right",
-                                                                 distance_same_lane=16,
-                                                                 distance_other_lane=200,
-                                                                 distance_lane_change=10,
-                                                                 speed=14))
+                                                                 distance_same_lane=0,
+                                                                 distance_other_lane=100,
+                                                                 distance_lane_change=15,
+                                                                 speed=10))
 
 
         # construct scenario

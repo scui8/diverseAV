@@ -165,7 +165,7 @@ class ScenarioManager(object):
 
     def _find_cvip(self, actor_list):
         if len(actor_list) == 1 and self.ego_vehicles[0] in actor_list:
-            return None
+            return None, None, None, None
         ego_location = CarlaDataProvider.get_location(self.ego_vehicles[0])
         cvip = float('inf')
         x = float('inf')

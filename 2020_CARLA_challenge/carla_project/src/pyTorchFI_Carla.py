@@ -45,6 +45,17 @@ class pyTorchFI_Carla_Utils(object):
         assert len(loc) == 5
 
         return tuple(loc)
+
+    @staticmethod
+    def random_neuron_location(pfi_model, conv=-1):
+        if conv == -1:
+            conv = random.randint(0, pfi_model.get_total_conv() - 1)
+
+        c = random.randint(0, pfi_model.get_fmaps_num(conv) - 1)
+        h = random.randint(0, pfi_model.get_fmaps_H(conv) - 1)
+        w = random.randint(0, pfi_model.get_fmaps_W(conv) - 1)
+
+        return (conv, c, h, w)
     
     def random_value(min_val=-1, max_val=1):
         return random.uniform(min_val, max_val)
@@ -55,9 +66,19 @@ class pyTorchFI_Carla_Utils(object):
         (conv_idx, k, c_in, kH, kW)  = loc
         val = pyTorchFI_Carla_Utils.random_value(min_val, max_val)
 
-        print("\033[0;32m* FI Params-> Loc:{}, Val:{} \033[0m\n".format(loc, val))
+        print("\033[0;32m* FI Params-> Type: Weight, Loc:{}, Val:{} \033[0m\n".format(loc, val))
 
         return pfi_model.declare_weight_fi(conv_num=conv_idx, k=k, c=c_in, h=kH, w=kW, value=val)
+
+    def random_single_neuron_injection(pfi_model, batch=-1, conv_id=-1, min_val=-1, max_val=1):
+        # Permenant or 'Stuck at' fault for a neuron output
+        loc = pyTorchFI_Carla_Utils.random_neuron_location(pfi_model, conv_id)
+        (conv_idx, c, h, w)  = loc
+        val = pyTorchFI_Carla_Utils.random_value(min_val, max_val)
+
+        print("\033[0;32m* FI Params-> Type: Neuron, Loc:{}, Val:{} \033[0m\n".format(loc, val))
+
+        return pfi_model.declare_neuron_fi(batch=batch, conv_num=conv_idx, c=c, h=h, w=w, value=val)
 
     @staticmethod
     def print_pfi_model(pfi_model):
@@ -65,7 +86,12 @@ class pyTorchFI_Carla_Utils(object):
         
         for name,param in pfi_model.get_original_model().named_parameters():
             if pyTorchFI_Carla_Utils.is_conv_weight_layer(name):
-                print(name + ' <== Conv')
+                # Layer Output Dim
+                c = pfi_model.get_fmaps_num(count)
+                w = pfi_model.get_fmaps_W(count)
+                h = pfi_model.get_fmaps_H(count)
+
+                print(name + " <== Conv , Output Dim [ c:{}, h:{}, w:{} ]".format(c,h,w))
                 count+=1
             else:
                 print(name)

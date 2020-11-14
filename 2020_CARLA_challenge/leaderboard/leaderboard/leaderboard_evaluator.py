@@ -323,6 +323,7 @@ class LeaderboardEvaluator(object):
             
             # change to fault injection scenario
             # scenario = RouteScenario(world=self.world, config=config, debug_mode=args.debug)
+            
             scenario = FIScenario(world=self.world, config=config, debug_mode=args.debug)
             
             self.statistics_manager.set_scenario(scenario.scenario)

@@ -186,7 +186,7 @@ class RouteScenario(BasicScenario):
         self.route = None
         self.sampled_scenarios_definitions = None
 
-        self._update_route(world, config, debug_mode>0)
+        self._update_route(world, config, debug_mode>2)
 
         ego_vehicle = self._update_ego_vehicle()
 
@@ -195,7 +195,7 @@ class RouteScenario(BasicScenario):
                                                              self.sampled_scenarios_definitions,
                                                              scenarios_per_tick=10,
                                                              timeout=self.timeout,
-                                                             debug_mode=debug_mode>1)
+                                                             debug_mode=debug_mode>0)
 
         # !!!!!!!!!!!!!!!!!!!!!!!!! Warning !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # !!!!!!!!!!!!!!!!!!!!!!!!!! TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

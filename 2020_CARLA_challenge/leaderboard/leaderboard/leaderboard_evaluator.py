@@ -362,8 +362,10 @@ class LeaderboardEvaluator(object):
         print("\033[36m\033[1m==> Configuring pyTorchFI\033[0m")
         if args.enable_fi:
             pfi_model = self.agent_instance.get_pfi_model()
-            # pfi_carla_utils.print_pfi_model(pfi_model)
-            pfi_inj = pfi_carla_utils.random_single_weight_injection(pfi_model, conv_id=60, min_val=-100, max_val=100)
+            pfi_carla_utils.print_pfi_model(pfi_model)
+            # Conv_Id is the index of the nth convolution layer in the network
+            # pfi_inj = pfi_carla_utils.random_single_weight_injection(pfi_model, conv_id=60, min_val=-100, max_val=100)
+            pfi_inj = pfi_carla_utils.random_single_neuron_injection(pfi_model, batch = 0, conv_id=60, min_val=-100, max_val=100)
             self.agent_instance.set_pfi_inj(pfi_inj)
             # pfi_carla_utils.get_weight_distribution(pfi_model)
         else:
@@ -484,7 +486,7 @@ def main():
     # diverse AV project additional arugments
     parser.add_argument("--dual_agent", action="store_true")
     parser.add_argument("--log_path", default=None, type=str)
-    parser.add_argument("--enable_fi", default=False, help="Enable pyTorchFI")
+    parser.add_argument("--enable_fi", action="store_true", help="Enable pyTorchFI")
 
     arguments = parser.parse_args()
 

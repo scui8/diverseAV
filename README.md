@@ -20,3 +20,8 @@ To run scenarios, choose scenarios under the folder `leaderboard/data/` and look
 
 ## Logging
 The user can also dump the control output from the ADS(s) for analysis. To dump the output, use `--control_log_path=path/to/dump`, the path should points to a valid folder. The control output will be dumped into a CSV file. To disable logging simply do not set this flag. 
+
+## PytorchFI on Network Weights
+1. Makse sure that pytorchfi is installed, `pip3 install pytorchfi`.
+2. Copy the `pytorchfi_customized/core.py` file in this repository to `~/.local/lib/python3.7/site-packages/pytorchfi/`folder, and replace the original file.
+3. To enable fault injection on the weights of the neural network, pass flag `--enable_fi` when running the leaderboard evaluation file.

@@ -356,7 +356,8 @@ class FIScenario(BasicScenario):
         Based on the parsed route and possible scenarios, build all the scenario classes.
         """
         scenario_instance_vec = []
-
+        print("Base scenario time out after:", timeout / 3)
+        timeout /= 3
         if debug_mode:
             for scenario in scenario_definitions:
                 loc = carla.Location(scenario['trigger_position']['x'],

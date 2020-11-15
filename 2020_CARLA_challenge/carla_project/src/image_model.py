@@ -114,7 +114,7 @@ class ImageModel(pl.LightningModule):
     ##-- pyTorch FI Integration --##
     def init_pytorch_fi(self):
         #Params -> model, input_h, input_w, batch_size
-        self.pfi_model = pfi_core(self.net,144,256,1, use_cuda=True, c=10, debug=True)
+        self.pfi_model = pfi_core(self.net, 144, 256, 1, use_cuda=True, c=10, debug=True)
 
     def set_pfi_inj(self, pfi_inj, enable=True):
         self.pfi_inj = pfi_inj

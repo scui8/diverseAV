@@ -9,10 +9,14 @@
             {
                 "index": 0,
                 "infractions": {
-                    "collisions_layout": [],
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.wall and id=0 at (x=183.445, y=-71.617, z=0.097)"
+                    ],
                     "collisions_pedestrian": [],
                     "collisions_vehicle": [],
-                    "outside_route_lanes": [],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 2.0 meters (14.17% of the completed route)"
+                    ],
                     "red_light": [],
                     "route_dev": [],
                     "route_timeout": [],
@@ -20,17 +24,17 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 23.4250003490597,
-                    "duration_system": 71.98877286911011,
+                    "duration_game": 6.125000091269612,
+                    "duration_system": 20.495647430419922,
                     "route_length": 151.56009093328234
                 },
                 "route_id": "RouteScenario_0",
                 "scores": {
-                    "score_composed": 100.0,
-                    "score_penalty": 1.0,
-                    "score_route": 100.0
+                    "score_composed": 5.2146986503221795,
+                    "score_penalty": 0.5579191877159886,
+                    "score_route": 9.346691716537174
                 },
-                "status": "Completed"
+                "status": "Failed"
             }
         ]
     },

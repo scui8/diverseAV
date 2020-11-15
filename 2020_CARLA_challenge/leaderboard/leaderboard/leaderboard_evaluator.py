@@ -364,8 +364,8 @@ class LeaderboardEvaluator(object):
             pfi_model = self.agent_instance.get_pfi_model()
             pfi_carla_utils.print_pfi_model(pfi_model)
             # Conv_Id is the index of the nth convolution layer in the network
-            # pfi_inj = pfi_carla_utils.random_single_weight_injection(pfi_model, conv_id=60, min_val=-100, max_val=100)
-            pfi_inj = pfi_carla_utils.random_single_neuron_injection(pfi_model, batch = 0, conv_id=60, min_val=-100, max_val=100)
+            pfi_inj = pfi_carla_utils.random_single_weight_injection(pfi_model, conv_id=60, min_val=20000, max_val=1000000)
+            # pfi_inj = pfi_carla_utils.random_single_neuron_injection(pfi_model, batch = 0, conv_id=60, min_val=-100, max_val=100)
             self.agent_instance.set_pfi_inj(pfi_inj)
             # pfi_carla_utils.get_weight_distribution(pfi_model)
         else:
@@ -491,6 +491,13 @@ def main():
     arguments = parser.parse_args()
 
     statistics_manager = StatisticsManager()
+
+    if arguments.enable_fi:
+        print("========================= Warning ! =========================")
+        print("To use weight based pytorch FI injection, make sure you have")
+        print("replaced the pytorch fi core.py file in the .local python lib")
+        print("with the one provided by the repository.")
+        print("=========================+++++++++++=========================")
 
     try:
         # setup control log path

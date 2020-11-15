@@ -61,7 +61,7 @@ class LeadCutIn(BasicScenario):
         """
 
         self._map = CarlaDataProvider.get_map()
-        self._first_vehicle_location = 25
+        self._first_vehicle_location = 22
         self._first_vehicle_speed = 22
         self._reference_waypoint = self._map.get_waypoint(config.trigger_points[0].location)
         self._other_actor_max_brake = 1.0
@@ -143,8 +143,8 @@ class LeadCutIn(BasicScenario):
         driving_to_next_intersection_second.add_child(LaneChange(self.other_actors[0],
                                                                  direction="right",
                                                                  distance_same_lane=0,
-                                                                 distance_other_lane=100,
-                                                                 distance_lane_change=15,
+                                                                 distance_other_lane=200,
+                                                                 distance_lane_change=10,
                                                                  speed=10))
 
 

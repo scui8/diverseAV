@@ -62,7 +62,7 @@ class ImageAgent(BaseAgent):
         super()._init()
 
         self._turn_controller = PIDController(K_P=1.5, K_I=0.75, K_D=0.3, n=40)
-        self._speed_controller = PIDController(K_P=5.0, K_I=0.5, K_D=1.0, n=40)
+        self._speed_controller = PIDController(K_P=0.5, K_I=0.25, K_D=0.06, n=40)
 
     def tick(self, input_data):
         result = super().tick(input_data)
@@ -157,9 +157,9 @@ class ImageAgent(BaseAgent):
 
         speed = tick_data['speed']
 
-        brake = desired_speed < 0.4 or (speed / desired_speed) > 1.1
+        brake = desired_speed < 0.4 or (speed / desired_speed) > 1.05
 
-        delta = np.clip(desired_speed - speed, 0.0, 0.35)
+        delta = np.clip(desired_speed - speed, 0.0, 100.35)
         throttle = self._speed_controller.step(delta)
         throttle = np.clip(throttle, 0.0, 0.9)
         throttle = throttle if not brake else 0.0

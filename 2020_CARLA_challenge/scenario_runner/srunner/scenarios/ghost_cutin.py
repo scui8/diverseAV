@@ -145,7 +145,7 @@ class GhostCutIn(BasicScenario):
                                                                  distance_same_lane=15,
                                                                  distance_other_lane=200,
                                                                  distance_lane_change=11,
-                                                                 speed=13.7))
+                                                                 speed=13.5))
 
 
         # construct scenario

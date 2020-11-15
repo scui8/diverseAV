@@ -129,7 +129,7 @@ class LeadSlowDown(BasicScenario):
         driving_to_next_intersection_first = py_trees.composites.Sequence("Start Driving")
         driving_to_next_intersection_first.add_child(InTriggerDistanceToVehicle(self.other_actors[0],
                                                                           self.ego_vehicles[0],
-                                                                          distance=50,
+                                                                          distance=70,
                                                                           name="Distance"))
         driving_to_next_intersection_first.add_child(WaypointFollower(self.other_actors[0], self._first_vehicle_speed))
         

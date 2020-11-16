@@ -17,8 +17,8 @@ from team_code.base_agent import BaseAgent
 from team_code.pid_controller import PIDController
 
 
-DEBUG = int(os.environ.get('HAS_DISPLAY', 0))
-
+# DEBUG = int(os.environ.get('HAS_DISPLAY', 0))
+DEBUG = 0
 
 def get_entry_point():
     return 'ImageAgent'

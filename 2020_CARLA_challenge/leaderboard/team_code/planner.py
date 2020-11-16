@@ -4,8 +4,8 @@ from collections import deque
 import numpy as np
 
 
-DEBUG = int(os.environ.get('HAS_DISPLAY', 0))
-
+# DEBUG = int(os.environ.get('HAS_DISPLAY', 0))
+DEBUG = 0
 
 class Plotter(object):
     def __init__(self, size):
